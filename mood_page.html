@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mitu’s Mood Hub 💖</title>
+    <style>
+        body { font-family: 'Arial', sans-serif; text-align: center; background-color: #fbe8e8; padding: 30px; }
+        .container { background: white; padding: 30px; border-radius: 10px; width: 350px; margin: auto; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        select, textarea, button { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc; }
+        button { background-color: #d63384; color: white; font-size: 16px; cursor: pointer; border: none; transition: 0.3s; }
+        button:hover { background-color: #a82567; }
+    </style>
+</head>
+<body>
+
+    <h1>💖 Mitu’s Mood Hub 💖</h1>
+    <div class="container">
+        <h2>Select Your Mood 😊</h2>
+        <select id="mood" onchange="changeTheme()">
+            <option value="happy">😀 Happy</option>
+            <option value="sad">😔 Sad</option>
+            <option value="angry">😡 Angry</option>
+            <option value="excited">🤩 Excited</option>
+        </select>
+
+        <h2>Express Yourself 💬</h2>
+        <textarea id="complaint" rows="4" placeholder="What happened?"></textarea>
+
+        <h2>Special Request 🎁</h2>
+        <textarea id="request" rows="2" placeholder="Any request for AVI?"></textarea>
+
+        <button onclick="submitComplaint()">Submit</button>
+
+        <div id="popup" style="display: none;">
+            <p>💖 Hold tight, Mitu! AVI will reach out soon! 💖</p>
+            <button onclick="callAvi()">📞 Call AVI Now</button>
+            <button onclick="submitAnother()">🔄 Submit Another Complaint</button>
+            <button onclick="waitMessage()">❤️ I Will Wait</button>
+        </div>
+    </div>
+
+    <script>
+        function changeTheme() {
+            let moodColor = { happy: "#fdd835", sad: "#90caf9", angry: "#e53935", excited: "#ff9800" };
+            document.body.style.backgroundColor = moodColor[document.getElementById("mood").value];
+        }
+
+        function submitComplaint() {
+            let data = { mood: document.getElementById("mood").value, complaint: document.getElementById("complaint").value, request: document.getElementById("request").value, time: new Date().toLocaleString() };
+            localStorage.setItem("mitu_complaint", JSON.stringify(data));
+            document.getElementById("popup").style.display = "block";
+        }
+
+        function callAvi() { window.location.href = "tel:8200787417"; }
+        function submitAnother() { window.location.reload(); }
+        function waitMessage() { alert("❤️ Sit back, he won’t take long time! ❤️"); }
+    </script>
+
+</body>
+</html>

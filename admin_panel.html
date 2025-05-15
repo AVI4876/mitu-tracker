@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVI's Admin Panel 🚀</title>
+    <style>
+        body { font-family: 'Arial', sans-serif; text-align: center; background-color: #fbe8e8; padding: 30px; }
+        .container { background: white; padding: 30px; border-radius: 10px; width: 400px; margin: auto; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        button { width: 100%; padding: 10px; border-radius: 5px; background-color: #d63384; color: white; font-size: 16px; cursor: pointer; border: none; transition: 0.3s; }
+    </style>
+</head>
+<body>
+
+    <h1>🚀 AVI's Admin Panel 🚀</h1>
+    <div class="container">
+        <h2>Mitu’s Complaints & Requests 💖</h2>
+        <p><strong>Time:</strong> <span id="time"></span></p>
+        <p><strong>Mood:</strong> <span id="mood"></span></p>
+        <p><strong>Complaint:</strong> <span id="complaint"></span></p>
+        <p><strong>Special Request:</strong> <span id="request"></span></p>
+        <button onclick="resolveIssue()">✅ Mark as Resolved</button>
+    </div>
+
+    <script>
+        let data = JSON.parse(localStorage.getItem("mitu_complaint"));
+        document.getElementById("time").textContent = data?.time || "No data";
+        document.getElementById("mood").textContent = data?.mood || "No mood";
+        document.getElementById("complaint").textContent = data?.complaint || "No complaints";
+        document.getElementById("request").textContent = data?.request || "No requests";
+
+        function resolveIssue() { localStorage.removeItem("mitu_complaint"); alert("Resolved! ❤️"); window.location.reload(); }
+    </script>
+
+</body>
+</html>
